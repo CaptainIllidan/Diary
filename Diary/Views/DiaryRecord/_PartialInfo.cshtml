@@ -1,0 +1,51 @@
+﻿@model Diary.Models.Diary.DiaryRecord
+<h4>Запись ежедневника</h4>
+<hr />
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.Theme)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Theme)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.StartDateTime)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.StartDateTime)
+    </dd>
+
+    @if (ViewBag.type == Diary.Models.Diary.DiaryRecordType.Meeting.ToString() || ViewBag.type == Diary.Models.Diary.DiaryRecordType.Thing.ToString())
+    {
+        <dt>
+            @Html.DisplayNameFor(model => (model as Diary.Models.Diary.DiaryRecordFinishable).EndDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => (model as Diary.Models.Diary.DiaryRecordFinishable).EndDateTime)
+        </dd>
+    }
+
+    @if (ViewBag.type == Diary.Models.Diary.DiaryRecordType.Meeting.ToString())
+    {
+        <dt>
+            @Html.DisplayNameFor(model => (model as Diary.Models.Diary.Meeting).Place)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => (model as Diary.Models.Diary.Meeting).Place)
+        </dd>
+    }
+
+    <dt>
+        @Html.DisplayNameFor(model => model.IsDone)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.IsDone)
+    </dd>
+
+</dl>

@@ -1,0 +1,19 @@
+﻿@model Diary.Models.Contacts.ContactInformation
+
+
+<form method="post" action="@Url.Action("Edit", "ContactInformation")">
+    @Html.HiddenFor(model => model.ID)
+    <tr>
+        <td>
+            @Html.EnumDropDownListFor(model => model.ContactInformationType)
+        </td>
+        <td>
+            @Html.EditorFor(model => model.Value)
+        </td>
+        <td>
+            <div>
+                <input type="submit" value="Сохранить" class="btn btn-default" />
+            </div>
+        </td>
+    </tr>
+</form>

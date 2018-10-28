@@ -1,0 +1,103 @@
+﻿@using Diary.Common.Extensions
+@model IEnumerable<Diary.Models.Diary.DiaryRecord>
+
+
+@{
+    ViewBag.Title = "Diary - Ежедневник";
+}
+
+<h2>Ежедневник</h2>
+
+
+
+<div class="btn-group">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Создать <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        <li>@Html.ActionLink(Diary.Models.Diary.DiaryRecordType.Meeting.EnumDisplayNameFor(), "Create", new { type = Diary.Models.Diary.DiaryRecordType.Meeting.ToString()})</li>
+        <li>@Html.ActionLink(Diary.Models.Diary.DiaryRecordType.Note.EnumDisplayNameFor(), "Create", new { type = Diary.Models.Diary.DiaryRecordType.Note.ToString() })</li>
+        <li>@Html.ActionLink(Diary.Models.Diary.DiaryRecordType.Thing.EnumDisplayNameFor(), "Create", new { type = Diary.Models.Diary.DiaryRecordType.Thing.ToString() })</li>
+    </ul>
+</div>
+
+
+<div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Период <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        <li>@Html.ActionLink(Diary.Models.Diary.DiaryRecordPeriod.Day.EnumDisplayNameFor(), "Index", new { period = Diary.Models.Diary.DiaryRecordPeriod.Day.ToString() })</li>
+        <li>@Html.ActionLink(Diary.Models.Diary.DiaryRecordPeriod.Week.EnumDisplayNameFor(), "Index", new { period = Diary.Models.Diary.DiaryRecordPeriod.Week.ToString() })</li>
+        <li>@Html.ActionLink(Diary.Models.Diary.DiaryRecordPeriod.Month.EnumDisplayNameFor(), "Index", new { period = Diary.Models.Diary.DiaryRecordPeriod.Month.ToString() })</li>
+        <li role="separator" class="divider"></li>
+        <li>@Html.ActionLink(Diary.Models.Diary.DiaryRecordPeriod.All.EnumDisplayNameFor(), "Index", new { period = Diary.Models.Diary.DiaryRecordPeriod.All.EnumDisplayNameFor() })</li>
+    </ul>
+</div>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Поиск по названию: @Html.TextBox("SearchString")
+        <input type="submit" value="Поиск" class="btn btn-default" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Theme)
+        </th>
+        <th>
+            @Html.ActionLink(@Html.DisplayNameFor(model => model.StartDateTime).ToString(), "Index", new { sortOrder = ViewBag.DateStartSortParm })
+        </th>
+        <th>
+            @Html.ActionLink(@Html.DisplayNameFor(
+           Model => (Model.FirstOrDefault() as Diary.Models.Diary.DiaryRecordFinishable).EndDateTime).ToString(),
+           "Index",
+           new { sortOrder = ViewBag.DateEndSortParm })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsDone)
+        </th>
+        <th>
+            @Html.ActionLink(@Html.DisplayNameFor(model => model.DiaryRecordType).ToString(), "Index", new { sortOrder = ViewBag.TypeSortParm })
+        </th>
+        <th>
+            @Html.DisplayNameFor(Model => (Model.FirstOrDefault() as Diary.Models.Diary.Meeting).Place)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Theme)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => (item as Diary.Models.Diary.DiaryRecordFinishable).EndDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDone)
+            </td>
+            <td>
+                @item.DiaryRecordType.EnumDisplayNameFor()
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => (item as Diary.Models.Diary.Meeting).Place)
+            </td>
+            <td>
+                <div class="btn-group">
+                    @Html.ActionLink("Изменить", "Edit", new { id = item.ID }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("Подробнее", "Details", new { id = item.ID }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("Удалить", "Delete", new { id = item.ID }, new { @class = "btn btn-default" })
+                </div>
+            </td>
+        </tr>
+    }
+
+</table>

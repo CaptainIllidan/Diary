@@ -1,0 +1,65 @@
+﻿@using Diary.Common.Extensions;
+@model Diary.Models.Contacts.ContactRecord
+<h4>Контакт</h4>
+<hr />
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.FirstName)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.FirstName)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.LastName)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.LastName)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Patronymic)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Patronymic)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.BirthDate)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.BirthDate)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Company)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Company)
+    </dd>
+    <dd>
+        <table class="table">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.ContactInformation.FirstOrDefault().ContactInformationType)</th>
+                <th>@Html.DisplayNameFor(model => model.ContactInformation.FirstOrDefault().Value)</th>
+            </tr>
+            @foreach (var item in Model.ContactInformation)
+            {
+                <tr>
+                    <td>
+                        @item.ContactInformationType.EnumDisplayNameFor()
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Value)
+                    </td>
+                </tr>
+            }
+        </table>
+    </dd>
+
+</dl>

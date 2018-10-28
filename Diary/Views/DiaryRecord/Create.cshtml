@@ -1,0 +1,51 @@
+﻿@model Diary.Models.Diary.DiaryRecord
+
+@{
+    ViewBag.Title = "Создать";
+}
+
+<h2>Создать</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    @{
+        Html.RenderPartial("_PartialEdit");
+    }
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            @if (ViewBag.type == Diary.Models.Diary.DiaryRecordType.Meeting.ToString())
+            {
+                <input type="submit" value="Создать встречу" formaction=@Url.Action("CreateMeeting") class="btn btn-default" />
+            }
+            @if (ViewBag.type == Diary.Models.Diary.DiaryRecordType.Note.ToString())
+            {
+                <input type="submit" value="Создать памятку" formaction=@Url.Action("CreateNote") class="btn btn-default" />
+            }
+            @if (ViewBag.type == Diary.Models.Diary.DiaryRecordType.Thing.ToString())
+            {
+                <input type="submit" value="Создать дело" formaction=@Url.Action("CreateThing") class="btn btn-default" />
+            }
+            @if (ViewBag.type == null)
+            {
+                Response.Redirect("~/DiaryRecord/Index");
+            }
+        </div>
+    </div>
+
+</div>
+}
+
+
+<div>
+    @Html.ActionLink("Назад к списку", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

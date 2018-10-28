@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Diary.Models.Contacts.ContactRecord>
+
+@{
+    ViewBag.Title = "Diary - Контакты";
+}
+
+<h2>Контакты</h2>
+
+<p>
+    @Html.ActionLink("Создать", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Поиск по названию: @Html.TextBox("SearchString")
+        <input type="submit" value="Поиск" class="btn btn-default" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink(@Html.DisplayNameFor(model => model.FirstName).ToString(), "Index", new { sortOrder = ViewBag.FirstNameSortParm })
+        </th>
+        <th>
+            @Html.ActionLink(@Html.DisplayNameFor(model => model.LastName).ToString(), "Index", new { sortOrder = ViewBag.LastNameSortParm })
+        </th>
+        <th>
+            @Html.ActionLink(@Html.DisplayNameFor(model => model.Patronymic).ToString(), "Index", new { sortOrder = ViewBag.PatronymicSortParm })
+        </th>
+        <th>
+            @Html.ActionLink(@Html.DisplayNameFor(model => model.BirthDate).ToString(), "Index", new { sortOrder = ViewBag.BirthDateSortParm })
+        </th>
+        <th>
+            @Html.ActionLink(@Html.DisplayNameFor(model => model.Company).ToString(), "Index", new { sortOrder = ViewBag.CompanySortParm })
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Patronymic)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirthDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company)
+            </td>
+            <td>
+                @Html.ActionLink("Изменить", "Edit", new { id = item.ID }, new { @class = "btn btn-default" })
+                @Html.ActionLink("Подробнее", "Details", new { id = item.ID }, new { @class = "btn btn-default" })
+                @Html.ActionLink("Удалить", "Delete", new { id = item.ID }, new { @class = "btn btn-default" })
+            </td>
+        </tr>
+    }
+
+</table>

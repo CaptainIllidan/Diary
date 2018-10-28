@@ -9,7 +9,20 @@ namespace Diary
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-3.3.1.js",
+                        "~/Scripts/jquery-3.3.1.min.js",
+                        "~/Scripts/jquery-ui-1.12.1.js",
+                        "~/Scripts/jquery-ui-timepicker-addon.js",
+                        "~/Scripts/jquery-ui-timepicker-addon.min.js",
+                        "~/Scripts/jquery.validate.js",
+                        "~/Scripts/jquery.validate.min.js",
+                        "~/Scripts/jquery.jqGrid.js",
+                        "~/Scripts/jquery.jqGrid.min.js",
+                        "~/Scripts/i18n/jquery-ui-timepicker-ru.js",
+                        "~/Scripts/i18n/grid.locale-ru.js",
+                        "~/Scripts/datepicker-ru.js",                        
+                        "~/Scripts/moment.js"
+                        ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -23,8 +36,12 @@ namespace Diary
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/site.css",
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/themes/base/jquery-ui.css",
+                      "~/Content/jquery-ui-timepicker-addon.css",
+                      "~/Content/jquery.jqGrid/ui.jqgrid.css"
+                      ));
         }
     }
 }
