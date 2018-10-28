@@ -1,14 +1,14 @@
 # Diary
 ASP.NET MVC5 Diary and Contact list
 //Todo: Make good deploy instead of this
-Deploy:
+Deploy:__
 Repair connection string in Web.config
 
 Not realized:
 1) Contact info validation (check that e-mail pass the regex etc.)
 2) Adding contact information in time of creating contact (is it important?)
 
-Развертывание:
+Развертывание:__
 Исправить строку подключения в Web.config
 
 Не реализовано:
