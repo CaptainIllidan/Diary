@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <DbFullSql path="C:\Users\defau_000\source\repos\Diary\Diary\obj\Release\AutoScripts\DiaryContext-развертывание_SchemaOnly.sql" Transacted="True" />
+  <IisApp path="C:\Users\defau_000\source\repos\Diary\Diary\obj\Release\Package\PackageTmp" />
+  <setAcl path="C:\Users\defau_000\source\repos\Diary\Diary\obj\Release\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="C:\Users\defau_000\source\repos\Diary\Diary\obj\Release\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+</sitemanifest>
