@@ -1,6 +1,6 @@
 # Diary
 ASP.NET MVC5 Diary and Contact list <br />
-//Todo: Make good deploy instead of this
+//Todo: Make good deploy instead of this <br />
 Deploy: <br />
 Repair connection string in Web.config
 
